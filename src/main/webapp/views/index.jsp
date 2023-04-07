@@ -9,6 +9,7 @@
 <title>Student Enquiry Form</title>
 </head>
 <body>
+
 	<h2>Student Enquiry Form</h2>
 
 	<hr />
@@ -43,7 +44,10 @@
 				<td><form:select path="course">
 						<form:option value="">-select</form:option>
 						<form:options items="${courses}" />
-						<%-- <form:option value="java">Java</form:option>
+						
+						<%-- This Code Hard Coded from UI 
+						
+						<form:option value="java">Java</form:option>
 						<form:option value="angular">Angular</form:option>
 						<form:option value="devops">Devops</form:option>
 						<form:option value="python">Python</form:option> --%>
@@ -52,11 +56,14 @@
 
 			<tr>
 				<td>Timings:</td>
-				
-				<td><form:checkbox path="timings" value="morning" />Morning 
-				<form:checkbox path="timings" value="after-noon" />After-Noon
-				<form:checkbox path="timings" value="Evening" />Evening
-				
+
+				<td>
+				<%-- <form:checkbox path="timings" value="morning" />Morning <form:checkbox
+						path="timings" value="after-noon" />After-Noon <form:checkbox
+						path="timings" value="Evening" />Evening --%>
+						
+				<form:checkboxes items="${prefTimings }" path="timings"/>		
+						
 				</td>
 
 

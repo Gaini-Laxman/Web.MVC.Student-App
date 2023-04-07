@@ -11,33 +11,46 @@ import com.klinnovations.service.StudentService;
 
 @Controller
 public class StudentController {
-	
+
 	@Autowired
 	private StudentService service;
 
 	@GetMapping("/")
 	public String loadIndexPage(Model model) {
+
+		//Student sobj = new Student();
 		
-		Student sobj = new Student();
-		model.addAttribute("student", sobj);
-		//sobj.setName("Laxman");
+		init(model);
 		
-		model.addAttribute("courses", service.getCourses());
+		//model.addAttribute("student", sobj);
+		// sobj.setName("Laxman");
+		// List<String> courseList = service.getCourses();
+		//model.addAttribute("courses", service.getCourses());
+		
 		return "index";
-		
+
 	}
-	
+
+	private void init(Model model) {
+		model.addAttribute("student", new Student());
+		model.addAttribute("courses", service.getCourses());
+		model.addAttribute("prefTimings", service.getTimings());
+	}
+
 	@PostMapping("/save")
-	public String handleSubmitBtn(Student s , Model model) {
+	public String handleSubmitBtn(Student s, Model model) {
 		
-		System.out.println(s);
+		boolean isSaved = service.saveStudent(s);
+		
+		if(isSaved) {
+		
+		//System.out.println(s);
+		//service.saveStudent(s);
 		model.addAttribute("msg", "Data Saved SuccessFully....");
+		}
+		
+		init(model);
+
 		return "index";
+	}
 }
-}
-
-
-
-
-
-
